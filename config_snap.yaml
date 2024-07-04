@@ -1,0 +1,52 @@
+# These are configuration parameters that can be set by users
+# The parameters enable access to the cloud collections
+
+sources:
+  BPS:
+    s3_class: ["mpc_cube", "stac_cube", "eo_cube", "raster_cube"]
+    collections:
+      SENTINEL-1-RTC: &snap_s1_rtc
+        bands:
+          VV: &bps_grd_10m
+            missing_value: -3.402823466385288e+37
+            minimum_value: -3.402823466385288e+37
+            maximum_value: 1.7014118346015974e+37
+            offset_value: 0
+            scale_factor: 1
+            resolution: 10
+            band_name: "vv"
+            data_type: "FLT4S"
+          VH:
+            <<: *bps_rtc_10m
+            band_name: "vh"
+          DPDD:
+            <<: *bps_rtc_10m
+            band_name: "dpdd"
+          DPRVIVV:
+            <<: *bps_rtc_10m
+            band_name: "dprvivv"
+          ENTROPY:
+            <<: *bps_rtc_10m
+            band_name: "entropy"
+          ALPHA:
+            <<: *bps_rtc_10m
+            band_name: "alpha"
+          DPRVI:
+            <<: *bps_rtc_10m
+            band_name: "dprvi"
+          COHERENCE:
+            <<: *bps_rtc_10m
+            band_name: "coherence"
+        satellite: "SENTINEL-1"
+        sensor: "C-band-SAR"
+        orbits: ["ascending", "descending"]
+        platforms:
+          SENTINEL-1A: "Sentinel-1A"
+          SENTINEL-1B: "Sentinel-1B"
+        collection_name: "sentinel-1-rtc"
+        sar_cube: true
+        open_data: true
+        open_data_token: false
+        metadata_search: "feature"
+        ext_tolerance: 0
+        grid_system: "MGRS"
